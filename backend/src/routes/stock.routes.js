@@ -1,12 +1,8 @@
 import express from 'express';
 import { protect } from '../middleware/auth.middleware.js';
-import { getMovements, recordMovement } from '../controllers/stock.controller.js';
 
 const router = express.Router();
 
-router.use(protect);
-
-router.get('/', getMovements);
-router.post('/', recordMovement);
+router.get('/', protect, (req, res) => res.json({ message: 'stock route working' }));
 
 export default router;
