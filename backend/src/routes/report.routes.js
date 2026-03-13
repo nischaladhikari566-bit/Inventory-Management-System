@@ -1,8 +1,11 @@
 import express from 'express';
-import { protect, adminOnly } from '../middleware/auth.middleware.js';
+import { protect } from '../middleware/auth.middleware.js';
+import { getDashboardStats } from '../controllers/report.controller.js';
 
 const router = express.Router();
 
-router.get('/', protect, adminOnly, (req, res) => res.json({ message: 'report route working' }));
+router.use(protect);
+
+router.get('/dashboard', getDashboardStats);
 
 export default router;
